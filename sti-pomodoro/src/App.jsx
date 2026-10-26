@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import logo from './assets/sti-pomodoro-logo.png'
 import './App.css'
 
 const defaults = { work: 25, short: 5, long: 15 }
@@ -10,7 +11,6 @@ const sessions = [
 
 function Icon({ name, size = 24 }) {
   const shapes = {
-    clock: <><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3.5 2" /></>,
     play: <path d="m8 5 11 7-11 7V5Z" fill="currentColor" stroke="currentColor" />,
     pause: <><path d="M8 5v14M16 5v14" strokeWidth="3.5" /></>,
     reset: <><path d="M4 11a8 8 0 1 1 2.1 6.4" /><path d="M4 5v6h6" /></>,
@@ -110,7 +110,7 @@ function App() {
     <div className="app-shell">
       <header className="topbar">
         <div className="brand">
-          <div className="brand-icon"><Icon name="clock" size={29} /></div>
+          <div className="brand-icon"><img src={logo} alt="โลโก้ Sti Pomodoro" /></div>
           <span className="brand-name">Sti Pomodoro</span>
           <span className="brand-subtitle">Pomodoro Timer</span>
         </div>
