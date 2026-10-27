@@ -1,5 +1,5 @@
 #root { min-height: 100svh; }
-.app-shell { min-height: 100svh; display: flex; flex-direction: column; background: #273550; border: 2px solid #34435f; border-top: 6px solid #16233c; border-radius: 0 0 32px 32px; overflow: hidden; }
+.app-shell { min-height: 100svh; display: flex; flex-direction: column; background: #253550 url('./assets/pomodoro-background.jpeg') right bottom / cover no-repeat; border: 2px solid #34435f; border-top: 6px solid #16233c; border-radius: 0 0 32px 32px; overflow: hidden; }
 .topbar { min-height: 132px; padding: 0 50px; display: flex; align-items: center; justify-content: space-between; gap: 24px; border-bottom: 1px solid rgba(255,255,255,.035); }
 .brand, .header-actions { display: flex; align-items: center; }
 .brand { gap: 24px; white-space: nowrap; }
@@ -23,7 +23,7 @@
 .session-option strong { font-size: 24px; line-height: 1.1; font-weight: 800; }
 .session-option > span:last-child { color: #71829f; font-size: 20px; }
 .session-option.active > span:last-child { color: #d2e0ff; }
-.timer-card { position: relative; border: 2px solid #30405e; border-radius: 33px; background: radial-gradient(circle at 65% 55%, #263855 0, #24324e 55%, #253451 100%); display: flex; align-items: center; justify-content: center; min-width: 0; }
+.timer-card { position: relative; border: 2px solid rgba(109, 137, 179, .27); border-radius: 33px; background: linear-gradient(90deg, rgba(32, 46, 72, .93) 0%, rgba(32, 46, 72, .86) 56%, rgba(32, 46, 72, .67) 100%); display: flex; align-items: center; justify-content: center; min-width: 0; }
 .timer-notice { position: absolute; top: 25px; left: 50%; transform: translateX(-50%); width: max-content; max-width: calc(100% - 30px); padding: 10px 18px; border-radius: 999px; background: #344867; color: #d9e8ff; font-size: 15px; font-weight: 700; text-align: center; }
 .timer-center { display: flex; flex-direction: column; align-items: center; width: 100%; padding: 50px 20px; transform: translateY(-7px); }
 .time-display { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: clamp(100px, 11vw, 190px); font-weight: 400; line-height: 1.1; letter-spacing: -.085em; font-variant-numeric: tabular-nums; color: #fff; padding-right: .085em; white-space: nowrap; }
@@ -39,7 +39,7 @@
 .cycle-dots { display: flex; gap: 20px; }
 .cycle-dots span { width: 24px; height: 24px; border-radius: 50%; background: #34445f; }
 .cycle-dots span.filled { background: #4387fb; }
-.bottom-bar { min-height: 138px; padding: 24px 50px; background: #18243b; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.bottom-bar { min-height: 138px; padding: 24px 50px; background: rgba(24, 36, 59, .94); display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 .work-details { display: flex; flex-wrap: wrap; align-items: center; gap: 30px; }
 .detail-group { display: flex; align-items: center; gap: 16px; color: #70829f; font-size: 27px; font-weight: 700; }
 .detail-group input { width: 230px; min-width: 0; border: 2px solid #2e3b54; border-radius: 8px; background: #202d44; color: white; padding: 10px 18px; font-size: 27px; font-weight: 700; }
@@ -55,6 +55,12 @@
 .duration-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin: 14px 0; color: #dbe4f2; font-weight: 700; }
 .duration-row input { width: 86px; padding: 9px 12px; border: 1px solid #4b6082; border-radius: 9px; background: #1b2941; color: white; text-align: center; }
 .done-button { width: 100%; margin-top: 22px; border: 0; border-radius: 10px; background: #2b67ec; color: white; padding: 12px; font-weight: 750; }
+@media (max-width: 1000px) {
+  .status-pill { display: none; }
+}
+@media (max-width: 850px) {
+  .brand-subtitle { display: none; }
+}
 @media (max-width: 1100px) {
   .topbar { padding: 0 30px; }
   .brand-name { font-size: 30px; }
@@ -68,21 +74,20 @@
   .detail-group, .detail-group input { font-size: 20px; }
 }
 @media (max-width: 760px) {
-  .app-shell { border-radius: 0; }
-  .topbar { min-height: 95px; padding: 18px 20px; }
-  .brand { gap: 12px; }
-  .brand-icon { width: 52px; height: 52px; }
-  .brand-name { font-size: 25px; }
-  .brand-subtitle, .status-pill { display: none; }
+  .app-shell { border-radius: 0; background-position: 72% bottom; }
+  .topbar { min-height: 82px; padding: 14px 16px; gap: 10px; }
+  .brand { min-width: 0; gap: 8px; }
+  .brand-icon { width: 44px; height: 44px; }
+  .brand-name { font-size: clamp(18px, 5vw, 25px); }
   .header-actions { gap: 0; }
-  .view-switch { font-size: 14px; }
+  .view-switch { font-size: 13px; white-space: nowrap; }
   .workspace { display: flex; flex-direction: column; gap: 20px; padding: 22px 16px; min-height: 0; }
   .session-nav { flex-direction: row; padding: 8px; gap: 6px; border-radius: 18px; }
   .session-option { min-height: 100px; padding: 10px 3px; gap: 4px; border-radius: 12px; }
   .session-initials { width: 34px; height: 34px; font-size: 13px; border-radius: 8px; margin-bottom: 2px; }
   .session-option strong { font-size: clamp(10px, 2.5vw, 15px); }
   .session-option > span:last-child { font-size: 12px; }
-  .timer-card { min-height: 460px; border-radius: 25px; }
+  .timer-card { min-height: 460px; border-radius: 25px; background: rgba(32, 46, 72, .84); }
   .timer-center { transform: none; padding: 36px 10px; }
   .time-display { font-size: clamp(74px, 17vw, 125px); }
   .timer-label { font-size: 18px; margin-top: 8px; }
@@ -92,10 +97,10 @@
   .cycle-indicator { margin-top: 45px; font-size: 17px; }
   .cycle-dots { gap: 13px; }
   .cycle-dots span { width: 15px; height: 15px; }
-  .bottom-bar { min-height: 100px; padding: 20px 16px; }
-  .work-details { gap: 10px 18px; }
-  .detail-group { gap: 8px; font-size: 15px; }
-  .detail-group input { width: 150px; padding: 7px 9px; font-size: 15px; }
+  .bottom-bar { min-height: 100px; padding: 20px 16px; display: grid; grid-template-columns: minmax(0, 1fr) 52px; align-items: start; gap: 12px; }
+  .work-details { min-width: 0; gap: 10px 18px; }
+  .detail-group { min-width: 0; gap: 8px; font-size: 15px; }
+  .detail-group input { width: 150px; max-width: 100%; padding: 7px 9px; font-size: 15px; }
   .focus-group input { width: 105px; }
   .settings-button { width: 52px; height: 52px; border-radius: 13px; }
 }
