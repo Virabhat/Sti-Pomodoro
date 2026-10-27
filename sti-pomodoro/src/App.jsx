@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
+import AuthDialog from './auth/AuthDialog'
+import { useAuth } from './auth/useAuth'
 import logo from './assets/sti-pomodoro-logo.png'
 import './App.css'
 
@@ -26,6 +28,8 @@ function formatTime(total) {
 }
 
 function App() {
+  const { user, displayName, profileError, loading: authLoading, updateDisplayName, signOut } = useAuth()
+  const [authMode, setAuthMode] = useState(null)
   const [durations, setDurations] = useState(defaults)
   const [mode, setMode] = useState('work')
   const [view, setView] = useState('pomodoro')
@@ -116,7 +120,9 @@ function App() {
         </div>
         <div className="header-actions">
           <button className="view-switch" onClick={() => selectView(view === 'pomodoro' ? 'stopwatch' : 'pomodoro')}>{view === 'pomodoro' ? 'Stopwatch' : 'Pomodoro'}</button>
-          <div className="status-pill"><span className="status-dot" />โหมดมีสมาธิทำงาน</div>
+          <button className="auth-button" type="button" onClick={() => setAuthMode(user ? 'account' : 'login')} disabled={authLoading}>
+            {authLoading ? 'กำลังโหลด...' : user ? displayName : 'เข้าสู่ระบบ'}
+          </button>
         </div>
       </header>
 
@@ -165,6 +171,18 @@ function App() {
           <button className="done-button" onClick={() => setSettingsOpen(false)}>เสร็จแล้ว</button>
         </section>
       </div>}
+
+      {authMode && <AuthDialog
+        key={authMode}
+        mode={authMode}
+        onModeChange={setAuthMode}
+        onClose={() => setAuthMode(null)}
+        user={user}
+        displayName={displayName}
+        profileError={profileError}
+        onUpdateDisplayName={updateDisplayName}
+        onSignOut={signOut}
+      />}
     </div>
   )
 }
